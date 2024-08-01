@@ -1,12 +1,10 @@
-import getPosts from "@/server/actions/get-posts";
-import Image from "next/image";
+import { Button } from "@/components/ui/button";
 
 export default async function Home() {
-  const data = await getPosts()
-  console.log(data)
   return (
-    <main>
-      <h1>Wellcome to next js</h1>
+    <main className="">
+        <h1>Home Page</h1>
+        <Button>Here</Button>
     </main>
-  );
+  )
 }

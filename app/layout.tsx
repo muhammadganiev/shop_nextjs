@@ -24,7 +24,6 @@ export default function RootLayout({
         <nav className="flex gap-2 justify-between px-4 bg-blue-700 ">
           <ul>
             <li><Link href="/">Home</Link></li>
-            <li><Link href="/about ">About</Link></li>
           </ul>
         </nav>
             {children}
