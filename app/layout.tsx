@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 
+import Nav from "@/components/navigation/nav";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -26,6 +28,7 @@ export default function RootLayout({
             <li><Link href="/">Home</Link></li>
           </ul>
         </nav>
+            <Nav/>
             {children}
         </body>
     </html>

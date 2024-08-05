@@ -8,6 +8,13 @@
       "when": 1722195958141,
       "tag": "0000_robust_warpath",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1722523790036,
+      "tag": "0001_giant_husk",
+      "breakpoints": true
     }
   ]
 }
