@@ -7,7 +7,6 @@ import { LogIn } from "lucide-react";
 
 export default async function Nav(){
     const session = await auth();
-    if(session)
         return(
             <header className="bg-slate-500 py-4" >
                 <nav>
@@ -17,19 +16,20 @@ export default async function Nav(){
                         </li>
                         {!session?(
                             <li>
-                                <Button>
-                                    <Link href="/auth/login">
-                                    <LogIn/>
-                                    <span>Login</span>
+                                <Button asChild>
+                                    <Link className="flex gap-2" href="/auth/login">
+                                        <LogIn size={16}/>
+                                        <span>Login</span>
                                     </Link>
                                 </Button>
                             </li>
-                        ) : 
-                        <li>
-                            <UserButton expires={session?.expires} user={session?.user } />
-                        </li> }
+                        ) : (
+                            <li>
+                                <UserButton expires={session?.expires} user={session?.user } />
+                            </li> 
+                        )}
                     </ul>
-                </nav>
+                </nav> 
             </header>
         )
 }

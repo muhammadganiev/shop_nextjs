@@ -21,15 +21,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-
-        <nav className="flex gap-2 justify-between px-4 bg-blue-700 ">
-          <ul>
-            <li><Link href="/">Home</Link></li>
-          </ul>
-        </nav>
-            <Nav/>
-            {children}
+      <body className={inter.className}> 
+        <Nav></Nav>
+         {children}
         </body>
     </html>
   );
