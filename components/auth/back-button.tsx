@@ -3,16 +3,15 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 
-type BackButtonType = {
-    href: string
-    label: string
-}
-export const BackButton = ({href, label} : { 
+export const BackButton = ({
+    href, 
+    label,
+} : { 
     href: string
     label: string
 }) =>{
     return(
-        <Button className="font-medium w-full">
+        <Button variant="link" className="font-medium w-full" asChild>
              <Link aria-label={label} href = {href}>
                     {label}
              </Link>

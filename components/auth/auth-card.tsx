@@ -33,5 +33,5 @@ export const AuthCard = ({
                 <BackButton href={backButtonHref} label={backButtonLabel}></BackButton>
             </CardFooter>
         </Card>
-    )
+    ) 
 }

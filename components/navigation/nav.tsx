@@ -1,6 +1,6 @@
 import {auth} from "@/server/auth"
 import { UserButton } from "./user-button";
-import Logo from "./logo";
+import Logo from "@/components/navigation/logo";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { LogIn } from "lucide-react";
@@ -8,11 +8,14 @@ import { LogIn } from "lucide-react";
 export default async function Nav(){
     const session = await auth();
         return(
-            <header className="bg-slate-500 py-4" >
+            <header className="py-8" >
                 <nav>
                     <ul className="flex justify-between">
                         <li>
-                            <Logo />
+                            <Link href={"/"}>
+                                <Logo />
+                            </Link>
+                            
                         </li>
                         {!session?(
                             <li>
