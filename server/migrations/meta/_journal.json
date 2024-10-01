@@ -50,6 +50,13 @@
       "when": 1724507565239,
       "tag": "0006_petite_valeria_richards",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1727765573297,
+      "tag": "0007_dear_lizard",
+      "breakpoints": true
     }
   ]
 }

@@ -4,47 +4,48 @@ import { useForm } from "react-hook-form"
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "../ui/form"
 import { AuthCard } from "./auth-card"
 import {zodResolver} from "@hookform/resolvers/zod"
-import { LoginSchema } from "@/types/login-schema"
 import * as z from "zod"
 import { Input } from "../ui/input"
 import { Button } from "../ui/button"
 import Link from "next/link"
-import {emailSignIn} from "@/server/actions/email-signin"
 import {useAction} from "next-safe-action/hook"
 import { cn } from "@/lib/utils"
 import { useState } from "react"
 import { FormSuccess } from "./form-success"
 import { FormError } from "./form-error"
+import { NewPasswordSchema } from "@/types/new-password-schema"
+import { newPassword } from "@/server/actions/new-password"
+import { ResetSchema } from "@/types/reset-schema"
+import { reset } from "@/server/actions/password-reset"
 
-export const LoginForm = () => {
+export const ResetForm = () => {
 
-    const form = useForm({
-        resolver: zodResolver(LoginSchema),
+    const form = useForm<z.infer<typeof ResetSchema>>({
+        resolver: zodResolver(ResetSchema),
         defaultValues:{
             email: "",
-            password: "",
         }
     });
-
+ 
     const [error, setError] = useState("")
     const [success, setSuccess] = useState("")
 
-    const{execute, status} = useAction(emailSignIn,{
+    const{execute, status} = useAction(reset,{
         onSuccess(data){
             if(data?.error) setError(data.error)
-            if(data?.success) setSuccess(data.success)
+            if(data?.success) {setSuccess(data.success)}
         }
     })
 
-    const onSubmit = (values: z.infer<typeof LoginSchema>) => {
+    const onSubmit = (values: z.infer<typeof ResetSchema>) => {
         execute(values)
     }
 
     return(
         <AuthCard 
-        cardTitle="Welcome back!" 
-        backButtonHref="/auth/register" 
-        backButtonLabel="Create a new account" 
+        cardTitle="Forgot your password?" 
+        backButtonHref="/auth/login" 
+        backButtonLabel="Back to login" 
         showSocials>
             <div>
                 <Form {...form}>
@@ -55,23 +56,14 @@ export const LoginForm = () => {
                             name="email"
                             render={({field}) => (
                             <FormItem>
-                                <FormLabel>Email</FormLabel>
-                                <FormControl>
-                                    <Input {...field} placeholder="smobee@gmail.com" type="email" autoComplete="email"></Input>
-                                </FormControl>
-                                <FormDescription />
-                                <FormMessage />
-                            </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="password"
-                            render={({field}) => (
-                            <FormItem>
                                 <FormLabel>Password</FormLabel>
                                 <FormControl>
-                                    <Input {...field} placeholder="********" type="password" autoComplete="current-password"></Input>
+                                    <Input {...field} 
+                                    placeholder="smobee@gmail.com" 
+                                    type="email" 
+                                    autoComplete="email"
+                                    disabled={status === 'executing'}
+                                    ></Input>
                                 </FormControl>
                                 <FormDescription />
                                 <FormMessage />
@@ -85,7 +77,7 @@ export const LoginForm = () => {
                         </Button>
                     </div>
                     <Button type="submit" className={cn('w-full', status === 'executing' ? 'animate-pulse' : "")}>
-                        {"Login"}
+                        {"Reset Password"}
                     </Button>
                     </form>
                 </Form>
